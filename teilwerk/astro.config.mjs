@@ -6,8 +6,8 @@ import tailwindcss from '@tailwindcss/vite';
 //   base: '/<repo-name>',
 // Für ein User-/Org-Repo (<username>.github.io) bleibt base leer ('/').
 export default defineConfig({
-  site: 'https://example.github.io',
-  base: '/teilwerk-demo',
+  site: 'https://webpusch.github.io',
+  base: '/website',
   vite: {
     plugins: [tailwindcss()],
   },
