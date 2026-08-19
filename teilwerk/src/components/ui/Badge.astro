@@ -1,0 +1,30 @@
+---
+import { cva, type VariantProps } from 'class-variance-authority';
+import { cn } from '@/lib/utils';
+
+const badgeVariants = cva(
+  'inline-flex items-center gap-4 rounded-full bg-paper-white border border-carbon-black px-8 py-4 font-akkurat text-[8px] uppercase leading-none tracking-[0.4px] text-carbon-black',
+  {
+    variants: {
+      accent: {
+        none: '',
+        // 'NEW'-Variante: Caution-Yellow-Punkt neben dem weißen Pill — laut
+        // Design-System die EINZIGE zulässige Verwendung dieser Akzentfarbe.
+        new: '',
+      },
+    },
+    defaultVariants: { accent: 'none' },
+  }
+);
+
+interface Props extends VariantProps<typeof badgeVariants> {
+  class?: string;
+}
+
+const { accent = 'none', class: className } = Astro.props;
+const classes = cn(badgeVariants({ accent }), className);
+---
+<span class={classes}>
+  {accent === 'new' && <span class="size-[6px] rounded-full bg-caution-yellow" aria-hidden="true"></span>}
+  <slot />
+</span>

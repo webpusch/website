@@ -1,0 +1,36 @@
+---
+import Button from '@/components/ui/Button.astro';
+import PlaceholderMedia from '@/components/ui/PlaceholderMedia.astro';
+---
+<section aria-label="Hero">
+  <!-- 50/50 Split — kein Gutter zwischen den Panels, die Nahtstelle IST das Layout -->
+  <div class="grid grid-cols-1 md:grid-cols-2">
+    <div class="relative h-[70vh] min-h-[420px] md:h-[80vh]">
+      <PlaceholderMedia label="Hintergrundbild/-video: Werkstatt bei der Arbeit" tone="dark" class="h-full" />
+      <div class="absolute inset-0 flex flex-col justify-end gap-16 p-24 md:p-48">
+        <h1 class="max-w-[14ch] font-akkurat text-display uppercase text-paper-white">
+          Ersatzteile ohne Umwege
+        </h1>
+        <div>
+          <Button href="#kategorien" variant="primary">Produkte entdecken</Button>
+        </div>
+      </div>
+    </div>
+    <div class="h-[40vh] min-h-[280px] md:h-[80vh]">
+      <PlaceholderMedia label="Hintergrundbild/-video: Ersatzteil-Nahaufnahme" tone="light" class="h-full" />
+    </div>
+  </div>
+
+  <!-- Editorial-Block darunter -->
+  <div class="mx-auto max-w-[1440px] px-16 py-48 md:px-32 md:py-[80px]">
+    <p class="mb-12 font-akkurat text-label-sm uppercase tracking-[0.44px] text-ash-gray">
+      Für Werkstätten, die nicht warten wollen
+    </p>
+    <h2 class="max-w-[18ch] font-akkurat text-heading uppercase text-carbon-black md:text-display">
+      10.000+ Teile. Ein Lager.
+    </h2>
+    <p class="mt-16 max-w-[52ch] font-akkurat text-body text-iron-gray">
+      Von Bremsen bis Elektrik — sofort verfügbar, direkt an Ihre Werkstatt geliefert.
+    </p>
+  </div>
+</section>

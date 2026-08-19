@@ -1,0 +1,36 @@
+---
+import Badge from '@/components/ui/Badge.astro';
+
+const brands = ['Marke A', 'Marke B', 'Marke C', 'Marke D', 'Marke E', 'Marke F'];
+---
+<section aria-label="Marken und Lieferservice" class="border-t border-concrete-gray">
+  <div class="mx-auto max-w-[1440px] px-16 py-48 md:px-32 md:py-[80px]">
+    <h2 data-reveal class="font-akkurat text-heading uppercase text-carbon-black">
+      Marken, die wir führen
+    </h2>
+    <p data-reveal class="mt-16 max-w-[52ch] font-akkurat text-body text-iron-gray">
+      Original- und Qualitäts-Ersatzteile namhafter Hersteller — ein Lager, alle Marken.
+    </p>
+
+    <div class="mt-32 grid grid-cols-2 gap-px bg-concrete-gray sm:grid-cols-3 lg:grid-cols-6">
+      {brands.map((brand, i) => (
+        <div
+          data-reveal
+          style={`transition-delay: ${i * 60}ms`}
+          class="flex h-[96px] items-center justify-center bg-paper-white"
+        >
+          <span class="font-akkurat text-label-sm uppercase tracking-[0.44px] text-ash-gray">{brand}</span>
+        </div>
+      ))}
+    </div>
+
+    <div data-reveal class="mt-48 flex flex-col items-start gap-16 border-t border-concrete-gray pt-48 sm:flex-row sm:items-center sm:justify-between">
+      <div>
+        <Badge accent="new" class="mb-12">Schneller Versand</Badge>
+        <p class="font-akkurat text-subheading uppercase text-carbon-black">
+          Lieferung meist innerhalb von 24&nbsp;Stunden
+        </p>
+      </div>
+    </div>
+  </div>
+</section>

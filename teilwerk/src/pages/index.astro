@@ -1,0 +1,25 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import NavBar from '@/components/NavBar.astro';
+import Hero from '@/components/Hero.astro';
+import TrustStats from '@/components/TrustStats.astro';
+import CategoryShowcase from '@/components/CategoryShowcase.astro';
+import BrandTrust from '@/components/BrandTrust.astro';
+import ShopPreview from '@/components/ShopPreview.astro';
+import ContactCTA from '@/components/ContactCTA.astro';
+import ScrollToTop from '@/components/ScrollToTop.astro';
+import Footer from '@/components/Footer.astro';
+---
+<BaseLayout>
+  <NavBar />
+  <main id="main">
+    <Hero />
+    <TrustStats />
+    <CategoryShowcase />
+    <BrandTrust />
+    <ShopPreview />
+    <ContactCTA />
+  </main>
+  <ScrollToTop />
+  <Footer />
+</BaseLayout>

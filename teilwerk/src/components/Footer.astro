@@ -1,0 +1,18 @@
+---
+const year = new Date().getFullYear();
+const links = ['Impressum', 'Datenschutz', 'AGB'];
+---
+<footer class="border-t border-concrete-gray">
+  <div class="mx-auto flex max-w-[1440px] flex-col gap-16 px-16 py-32 sm:flex-row sm:items-center sm:justify-between md:px-32">
+    <p class="font-akkurat text-label-sm uppercase tracking-[0.44px] text-ash-gray">
+      © {year} Teilwerk — Demo-Projekt, kein echtes Unternehmen
+    </p>
+    <nav aria-label="Rechtliches" class="flex gap-20">
+      {links.map((label) => (
+        <a href="#" class="font-akkurat text-label-sm uppercase tracking-[0.44px] text-carbon-black hover:text-ash-gray">
+          {label}
+        </a>
+      ))}
+    </nav>
+  </div>
+</footer>

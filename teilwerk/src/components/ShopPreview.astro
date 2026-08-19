@@ -1,0 +1,56 @@
+---
+import Badge from '@/components/ui/Badge.astro';
+import PlaceholderMedia from '@/components/ui/PlaceholderMedia.astro';
+
+const products = [
+  { code: 'BR-4521', name: 'Bremsscheibe VA', price: '64,90 €' },
+  { code: 'RF-1180', name: 'Sommerreifen 205/55 R16', price: '89,00 €' },
+  { code: 'EL-3309', name: 'Autobatterie 60Ah', price: '119,50 €', badge: 'Neu' },
+  { code: 'ZB-0087', name: 'Scheibenwischer-Set', price: '18,90 €' },
+  { code: 'BR-4522', name: 'Bremsbeläge HA', price: '42,30 €' },
+  { code: 'EL-3310', name: 'Zündkerzen-Set (4 Stk.)', price: '24,60 €' },
+  { code: 'RF-1181', name: 'Winterreifen 195/65 R15', price: '79,00 €' },
+  { code: 'ZB-0091', name: 'Motoröl 5W-30, 5L', price: '34,90 €' },
+  { code: 'ZB-0102', name: 'Frostschutzmittel Kühler', price: '12,50 €' },
+  { code: 'EL-3315', name: 'Lichtmaschine 90A', price: '168,00 €' },
+  { code: 'BR-4530', name: 'Bremsflüssigkeit DOT 4', price: '9,90 €', badge: 'Bestseller' },
+  { code: 'RF-1190', name: 'Alufelge 16 Zoll (Satz)', price: '340,00 €' },
+];
+---
+<section aria-label="Shop-Vorschau" class="border-t border-concrete-gray">
+  <div class="mx-auto max-w-[1440px] px-16 py-48 md:px-32 md:py-[80px]">
+    <h2 data-reveal class="font-akkurat text-heading uppercase text-carbon-black">
+      So sieht Ihr Shop aus
+    </h2>
+    <p data-reveal class="mt-16 max-w-[52ch] font-akkurat text-body text-iron-gray">
+      Vorschau der Produktübersicht — Mockup, kein Live-Shop.
+    </p>
+
+    <!-- Browser-Rahmen als Mockup-Kontext -->
+    <div data-reveal class="mt-32 overflow-hidden rounded-xl border border-concrete-gray shadow-md">
+      <div class="flex h-36 items-center gap-8 border-b border-concrete-gray bg-mist-gray px-16">
+        <span class="size-[9px] rounded-full bg-concrete-gray" aria-hidden="true"></span>
+        <span class="size-[9px] rounded-full bg-concrete-gray" aria-hidden="true"></span>
+        <span class="size-[9px] rounded-full bg-concrete-gray" aria-hidden="true"></span>
+        <span class="ml-12 font-partcode text-[11px] text-ash-gray">teilwerk.de/produkte</span>
+      </div>
+
+      <div class="grid grid-cols-2 border-t border-l border-concrete-gray sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6">
+        {products.map((p) => (
+          <div class="relative border-r border-b border-concrete-gray p-12">
+            <div class="relative aspect-square overflow-hidden rounded-xl">
+              <PlaceholderMedia label={p.name} tone="light" class="h-full" />
+              {p.badge && (
+                <span class="absolute bottom-8 right-8">
+                  <Badge accent={p.badge === 'Neu' ? 'new' : 'none'}>{p.badge}</Badge>
+                </span>
+              )}
+            </div>
+            <p class="mt-8 font-partcode text-[10px] uppercase tracking-[0.5px] text-ash-gray">{p.code}</p>
+            <p class="mt-4 font-akkurat text-label-sm text-carbon-black">{p.price}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>

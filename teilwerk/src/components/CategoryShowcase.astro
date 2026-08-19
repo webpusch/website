@@ -1,0 +1,31 @@
+---
+import Button from '@/components/ui/Button.astro';
+import PlaceholderMedia from '@/components/ui/PlaceholderMedia.astro';
+
+const categories = [
+  { name: 'Bremsen', placeholder: 'Kategoriebild: Bremsscheiben & Beläge' },
+  { name: 'Reifen', placeholder: 'Kategoriebild: Reifen & Räder' },
+  { name: 'Elektrik', placeholder: 'Kategoriebild: Batterien & Elektrik' },
+  { name: 'Zubehör', placeholder: 'Kategoriebild: Werkstattzubehör' },
+];
+---
+<section id="kategorien" aria-label="Kategorien" class="border-t border-concrete-gray">
+  <div class="px-16 py-48 md:px-32 md:py-[80px]">
+    <h2 data-reveal class="mb-32 font-akkurat text-heading uppercase text-carbon-black">
+      Kategorien
+    </h2>
+  </div>
+
+  <div class="grid grid-cols-1 gap-px bg-concrete-gray sm:grid-cols-2 lg:grid-cols-4">
+    {categories.map((cat, i) => (
+      <div data-reveal style={`transition-delay: ${i * 100}ms`} class="relative aspect-square bg-paper-white">
+        <PlaceholderMedia label={cat.placeholder} tone="dark" class="h-full" />
+        <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/70 via-black/0 to-black/0" aria-hidden="true"></div>
+        <div class="absolute inset-x-0 bottom-0 flex flex-col items-start gap-16 p-24">
+          <h3 class="font-akkurat text-heading uppercase text-paper-white">{cat.name}</h3>
+          <Button href="#kontakt" variant="ghost" size="sm">{cat.name} entdecken</Button>
+        </div>
+      </div>
+    ))}
+  </div>
+</section>

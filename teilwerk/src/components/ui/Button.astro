@@ -1,0 +1,38 @@
+---
+import { cva, type VariantProps } from 'class-variance-authority';
+import { cn } from '@/lib/utils';
+
+// Pill-Button — im gesamten System gibt es laut Design-Vorgabe KEINE
+// rechteckigen Buttons, ausschließlich die beiden hier definierten Varianten.
+export const buttonVariants = cva(
+  'inline-flex items-center justify-center gap-8 rounded-full font-akkurat text-label-sm uppercase leading-none whitespace-nowrap transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-carbon-black disabled:opacity-40 disabled:pointer-events-none',
+  {
+    variants: {
+      variant: {
+        primary: 'bg-carbon-black text-paper-white shadow-md hover:bg-ink',
+        ghost: 'bg-paper-white text-carbon-black border border-carbon-black hover:bg-mist-gray',
+      },
+      size: {
+        default: 'px-24 py-12',
+        sm: 'px-16 py-8 text-[10px]',
+      },
+    },
+    defaultVariants: { variant: 'primary', size: 'default' },
+  }
+);
+
+interface Props extends VariantProps<typeof buttonVariants> {
+  href?: string;
+  class?: string;
+  type?: 'button' | 'submit';
+  [key: string]: any;
+}
+
+const { variant, size, href, class: className, type = 'button', ...rest } = Astro.props;
+const classes = cn(buttonVariants({ variant, size }), className);
+---
+{href ? (
+  <a href={href} class={classes} {...rest}><slot /></a>
+) : (
+  <button type={type} class={classes} {...rest}><slot /></button>
+)}

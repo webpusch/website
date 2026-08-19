@@ -1,0 +1,31 @@
+---
+const stats = [
+  { target: 10000, suffix: '+', label: 'Teile auf Lager' },
+  { target: 98, suffix: '%', label: 'Lieferquote am gleichen Tag' },
+  { target: 500, suffix: '+', label: 'Werkstätten vertrauen uns' },
+];
+---
+<section id="vorteile" aria-label="Zahlen und Fakten" class="border-t border-concrete-gray">
+  <div class="mx-auto max-w-[1440px] px-16 py-48 md:px-32 md:py-[80px]">
+    <div data-reveal>
+      <h2 class="font-akkurat text-heading uppercase text-carbon-black">Warum Teilwerk</h2>
+      <p class="mt-16 max-w-[52ch] font-akkurat text-body text-iron-gray">
+        Keine Wartezeiten, kein Suchen in fünf verschiedenen Katalogen — ein Lager für den kompletten Werkstattbedarf.
+      </p>
+    </div>
+
+    <dl class="mt-48 grid grid-cols-1 gap-32 sm:grid-cols-3 sm:gap-24">
+      {stats.map((stat, i) => (
+        <div data-reveal style={`transition-delay: ${i * 120}ms`}>
+          <dt class="sr-only">{stat.label}</dt>
+          <dd class="font-akkurat text-display uppercase text-carbon-black">
+            <span data-countup data-target={stat.target} data-suffix={stat.suffix}>0</span>
+          </dd>
+          <dd class="mt-8 font-akkurat text-label-sm uppercase tracking-[0.44px] text-ash-gray">
+            {stat.label}
+          </dd>
+        </div>
+      ))}
+    </dl>
+  </div>
+</section>

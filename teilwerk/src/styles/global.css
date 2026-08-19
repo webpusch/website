@@ -1,0 +1,130 @@
+@import "tailwindcss";
+@import "@fontsource/inter/400.css"; /* Substitut für Akkurat Standard laut Design-System (Weight bleibt bewusst bei 400) */
+
+/* ==========================================================================
+   Design-Tokens — 1:1 aus der bereitgestellten design.md / theme.css übernommen
+   ========================================================================== */
+@theme {
+  /* Colors */
+  --color-carbon-black: #000000;
+  --color-paper-white: #ffffff;
+  --color-concrete-gray: #cacaca;
+  --color-mist-gray: #f1f1f1;
+  --color-iron-gray: #404040;
+  --color-ash-gray: #616161;
+  --color-ink: #1a1b1e;
+  --color-caution-yellow: #ffdd00;
+
+  /* Typography — Font Families
+     Akkurat Standard ist proprietär/nicht frei einbindbar → laut design.md
+     zulässiges Substitut: Inter. FRg (Modellcode-Font) wird durch die
+     System-Monospace-Stack ersetzt, um denselben "gestempelten Seriennummer"-
+     Charakter ohne zusätzlichen Font-Request zu erzielen. */
+  --font-akkurat: 'Inter', ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-partcode: ui-monospace, "SF Mono", "Cascadia Code", "Roboto Mono", Consolas, monospace;
+
+  /* Typography — Scale (aus design.md), inkl. gekoppelter Line-Height/Tracking-Werte */
+  --text-label-sm: 11px;
+  --text-label-sm--line-height: 1.15;
+  --text-label-sm--letter-spacing: 0.44px;
+
+  --text-body: 16px;
+  --text-body--line-height: 1.5;
+  --text-body--letter-spacing: 0.32px;
+
+  --text-subheading: 24px;
+  --text-subheading--line-height: 1.28;
+
+  --text-heading: 32px;
+  --text-heading--line-height: 0.97;
+  --text-heading--letter-spacing: -0.16px;
+
+  --text-display: 48px;
+  --text-display--line-height: 0.97;
+  --text-display--letter-spacing: -0.48px;
+
+  /* Spacing */
+  --spacing-4: 4px;
+  --spacing-8: 8px;
+  --spacing-12: 12px;
+  --spacing-16: 16px;
+  --spacing-20: 20px;
+  --spacing-24: 24px;
+  --spacing-28: 28px;
+  --spacing-32: 32px;
+  --spacing-36: 36px;
+  --spacing-48: 48px;
+
+  /* Border Radius */
+  --radius-md: 4px;
+  --radius-xl: 12px;
+  --radius-2xl: 16px;
+  --radius-full: 9999px;
+
+  /* Shadows */
+  --shadow-md: 2px 2px 10px 0px rgba(0, 0, 0, 0.12);
+  --shadow-subtle: 0px -1px 0px 0px rgb(64, 64, 64);
+  --shadow-sm: 2px 2px 5px 0px rgba(45, 45, 45, 0.5);
+
+  /* Breakpoints (Standard Tailwind, explizit gehalten) */
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+}
+
+/* ==========================================================================
+   Basis-Stile
+   ========================================================================== */
+@layer base {
+  html {
+    font-family: var(--font-akkurat);
+    -webkit-font-smoothing: antialiased;
+  }
+  body {
+    background: var(--color-paper-white);
+    color: var(--color-carbon-black);
+    font-size: var(--text-body);
+    line-height: 1.5;
+    letter-spacing: 0.32px;
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-carbon-black);
+    outline-offset: 2px;
+  }
+  ::selection {
+    background: var(--color-carbon-black);
+    color: var(--color-paper-white);
+  }
+}
+
+/* ==========================================================================
+   Scroll-Reveal — progressive enhancement:
+   Ohne (oder vor) aktivem JS bleibt der Inhalt sichtbar. Erst wenn die Klasse
+   "js" auf <html> gesetzt ist, werden [data-reveal]-Elemente ausgeblendet und
+   per IntersectionObserver (reveal.js) wieder eingeblendet.
+   Reihenfolge ist hier bewusst wichtig: ".js [data-reveal]" und
+   "[data-reveal].is-visible" haben identische Spezifität (0,2,0) — die später
+   im Quelltext stehende Regel gewinnt, daher steht .is-visible zuletzt.
+   ========================================================================== */
+@layer utilities {
+  [data-reveal] {
+    opacity: 1;
+    transform: none;
+  }
+  .js [data-reveal] {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  [data-reveal].is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] {
+    transition-duration: 0.01ms !important;
+  }
+}

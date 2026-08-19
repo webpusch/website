@@ -1,0 +1,55 @@
+---
+import { cn } from '@/lib/utils';
+
+interface Props {
+  label: string;
+  class?: string;
+  tone?: 'light' | 'dark';
+}
+
+const { label, class: className, tone = 'light' } = Astro.props;
+---
+<div
+  class={cn(
+    'relative flex h-full w-full items-center justify-center overflow-hidden',
+    tone === 'light' ? 'bg-mist-gray' : 'bg-iron-gray',
+    className
+  )}
+  role="img"
+  aria-label={label}
+>
+  <div
+    class={cn(
+      'absolute inset-0 opacity-60',
+      tone === 'light' ? 'placeholder-stripes-light' : 'placeholder-stripes-dark'
+    )}
+    aria-hidden="true"
+  ></div>
+  <span
+    class={cn(
+      'relative z-10 px-16 text-center font-akkurat text-label-sm uppercase',
+      tone === 'light' ? 'text-ash-gray' : 'text-concrete-gray'
+    )}
+  >{label}</span>
+</div>
+
+<style>
+  .placeholder-stripes-light {
+    background-image: repeating-linear-gradient(
+      -45deg,
+      var(--color-concrete-gray),
+      var(--color-concrete-gray) 1px,
+      transparent 1px,
+      transparent 14px
+    );
+  }
+  .placeholder-stripes-dark {
+    background-image: repeating-linear-gradient(
+      -45deg,
+      var(--color-ash-gray),
+      var(--color-ash-gray) 1px,
+      transparent 1px,
+      transparent 14px
+    );
+  }
+</style>
